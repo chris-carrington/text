@@ -95,10 +95,7 @@ class Program
     private static async Task<(HttpListenerRequest request, HttpListenerResponse response)> GetContextAsync (HttpListener listener)
     {
         HttpListenerContext context = await listener.GetContextAsync();
-        HttpListenerRequest request = context.Request;
-        HttpListenerResponse response = context.Response;
-
-        return (request, response);
+        return (request: context.Request, response: context.Response);
     }
 
 
@@ -118,9 +115,9 @@ class Program
 
     private static void WriteResponse (HttpListenerResponse response, byte[] buffer, int statusCode = 200)
     {
+        response.StatusCode = statusCode;
         response.ContentLength64 = buffer.Length;
         response.ContentType = "application/json";
-        response.StatusCode = statusCode;
 
         using var output = response.OutputStream;
         output.Write(buffer, 0, buffer.Length); // writes data to the OutputStream
