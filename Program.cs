@@ -6,7 +6,7 @@ using System.Text.Json;
 
 class Program
 {
-    public static async Task Main (string[] args)
+    public static async Task Main ()
     {
         string apiToken, phone;
 
@@ -48,7 +48,7 @@ class Program
             // --url 'https://app2.simpletexting.com/v1/send?token=YOUR_API_TOKEN&phone=SOME_STRING_VALUE&message=SOME_STRING_VALUE' \
             // --header 'accept: application/json' \
             // --header 'content-type: application/x-www-form-urlencoded'
-        var url = $"https://app2.simpletexting.com/v1/send?token={ apiToken }&phone={ HttpUtility.UrlEncode(phone) }&message={ HttpUtility.UrlEncode("Greetings world!") }";
+        var url = $"https://app2.simpletexting.com/v1/send?token={ apiToken }&phone={ HttpUtility.UrlEncode(phone) }&message={ HttpUtility.UrlEncode("Aloha World!") }";
         var request = new HttpRequestMessage(HttpMethod.Post, url); // init a post request
         request.Headers.Add("accept", "application/json"); // set accept header to request
         request.Content = new StringContent("", Encoding.UTF8, "application/x-www-form-urlencoded"); // set request body to an empty string AND set content-type header to application/x-www-form-urlencoded
