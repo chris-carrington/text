@@ -5,7 +5,7 @@
     1. `dotnet add package DotNetEnv`
     1. `dotnet add package System.Text.Json`
     1. Add a `.env` file adjacent to `Program.cs`
-        - In the file add: `SimpleTextAPIToken=APIKey`
+        - In the file add: `SimpleTextAPIToken=APIToken`
         - In the file add: `SimpleTextPhoneNumber=PhoneNumberToSendTo`
     1. `dotnet run`
 - In Bash Terminal #2
