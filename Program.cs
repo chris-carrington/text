@@ -49,10 +49,10 @@ class Program
             // --header 'accept: application/json' \
             // --header 'content-type: application/x-www-form-urlencoded'
         using HttpClient httpClient = new(); // provides a class for sending HTTP requests and receiving HTTP responses
-        var url = $"https://app2.simpletexting.com/v1/send?token={apiToken}&phone={HttpUtility.UrlEncode(phone)}&message={HttpUtility.UrlEncode("Greeting world!")}";
+        var url = $"https://app2.simpletexting.com/v1/send?token={apiToken}&phone={HttpUtility.UrlEncode(phone)}&message={HttpUtility.UrlEncode("Greetings world!")}";
         var request = new HttpRequestMessage(HttpMethod.Post, url); // init a post request
         request.Headers.Add("accept", "application/json"); // set accept header to request
-        request.Content = new StringContent("", Encoding.UTF8, "application/x-www-form-urlencoded"); // set request body to an empty string  AND set content-type header to application/x-www-form-urlencoded
+        request.Content = new StringContent("", Encoding.UTF8, "application/x-www-form-urlencoded"); // set request body to an empty string AND set content-type header to application/x-www-form-urlencoded
 
         return await httpClient.SendAsync(request);
     }
@@ -62,7 +62,7 @@ class Program
     {
         var textResponseAsString = await textResponseAsHttpResponse.Content.ReadAsStringAsync(); // http response to string
         var textResponseAsJSON = JsonSerializer.Deserialize<JsonElement>(textResponseAsString); // string to json
-        var jsonResponse = new { success = true, textResponseAsJSON }; // add { success: true } to response from Simple Text
+        var jsonResponse = new { success = true, simpleTextResponse = textResponseAsJSON }; // add { success: true } to response from Simple Text
         WriteResponse(response, JsonToByteArray(jsonResponse));
     }
 
